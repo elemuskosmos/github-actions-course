@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "kubernetes": "*.yaml",
+        "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/elemus/OneDrive%20-%20Distelsa/Escritorio/githubActions/github-actions-course/github/workflows/first-workflow.yaml"
+    }
+}
