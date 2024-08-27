@@ -16,10 +16,6 @@ on:
             - "!app.js"
     pull_request: 
         types: [ opened, assigned, reopened, synchronize ]
-        branches: 
-            - main
-        paths: 
-            - "**.js"
     issues: 
         types: [ opened ]
 
