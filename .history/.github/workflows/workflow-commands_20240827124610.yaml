@@ -20,7 +20,3 @@ jobs:
           echo "::group::My group title"
           echo "Inside group"
           echo "::endgroup::"
-      - name: Masking a value
-        run: echo "::add-mask::Secret String"
-      - name: Echo a secret
-        run: echo "Secret String"
