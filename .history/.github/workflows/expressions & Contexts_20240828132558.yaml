@@ -7,10 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     # if: github.event_name == 'issues' || github.event_name == 'pull_request'
     if: contains(fromJson('["issues","pull_request"]'), github.event_name)
-    steps:
-      - name: Rim only if issue has a bug level
-        if: contains(github.event.issue.labels.*.name, 'bug')
-        run: echo ${{ join(github.event.issue.labels.*.name, ', ') }}
   using-expressions-and-contexts:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
