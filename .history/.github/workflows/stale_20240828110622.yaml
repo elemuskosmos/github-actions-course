@@ -1,0 +1,11 @@
+name: Stale Issues & PR
+
+jobs:
+    stale:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/sale@v8
+              with:
+                stale-issue-message: "This is some message"
+                days-before-stale: 1
+                days-before-close: 5
