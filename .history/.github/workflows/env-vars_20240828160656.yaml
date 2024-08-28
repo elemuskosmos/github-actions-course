@@ -1,0 +1,13 @@
+name: Environment Variables
+on: [push]
+
+jobs:
+  env-vars-and-contest:
+    runs-on: ubuntu-latest
+    # if: $Github_REF == 'refs/heads/main' no funciona
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Log ENV VAR
+        run: echo $GITHUB_REF
+      - name: Log Context
+        run: echo ${{ github.ref }}
