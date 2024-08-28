@@ -1,10 +1,10 @@
 name: External Events
 on: 
   repository_dispatch: 
-    # types: [build]
+    types: [build]
 
 jobs:
   echo-a-string:
     runs-on: ubuntu-latest
     steps: 
-      - run: echo ${{ github.event.client_payload.env }}
+      - run: echo "Repository dispatch"
