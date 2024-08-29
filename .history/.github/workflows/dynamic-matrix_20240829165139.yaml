@@ -1,0 +1,29 @@
+name: Dynamic Matrix
+on: 
+  workflow_dispatch: 
+    inputs:
+      os:
+        description: Operating System
+        default: "widows-latest,ubuntu-latest"
+        type: string
+      node-version:
+        description: Node Version
+        default: "14,15,16"
+        type: string
+
+jobs:
+  node-matrix:
+    strategy:
+        matrix:
+            os: [ ubuntu-latest, windows-latest ]
+            node-version: [ 14,15,16 ]
+        # max-parallel: 3
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: node -v
+      - uses: actions/setup-node@v3
+        with:
+            node-version: ${{ matrix.node-version }}
+            architecture: 'x64'
+      - run: node -v
+        

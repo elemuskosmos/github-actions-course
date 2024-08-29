@@ -1,0 +1,24 @@
+name: Dynamic Matrix
+on: [push]
+
+jobs:
+  node-matrix:
+    continue-on-error: ${{ matrix.experimental == true }}
+    strategy:
+        matrix:
+            os: [ ubuntu-latest, windows-latest ]
+            node-version: [ 14,15,16 ]
+        # max-parallel: 3
+        fail-fast: true # evita que todos los jobs posteriores se cancelen si en caso falla uno
+    runs-on: ${{ matrix.os }}
+    steps:
+      - if: matrix.experimental == true
+        run: exit 1
+      - run: node -v
+      - run: echo '${{ toJson(matrix) }}'
+      - uses: actions/setup-node@v3
+        with:
+            node-version: ${{ matrix.node-version }}
+            architecture: 'x64'
+      - run: node -v
+        
