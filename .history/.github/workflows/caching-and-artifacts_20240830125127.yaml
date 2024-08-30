@@ -1,5 +1,6 @@
 name: Caching and Artifacts
 on: [workflow_dispatch]
+
 jobs:
   use-axios:
     runs-on: ubuntu-latest
@@ -10,18 +11,16 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: "${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}"
-          restore-keys: |
-            ${{ runner.os }}-npm-cache-
-            ${{ runner.os }}-
+          key: "npm-cache"
       - name: Display Cache Output
         run: echo '${{ toJSON(steps.cache-dependencies.outputs) }}'
       - name: Install dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: npm install
       - name: Use Axios
         uses: actions/github-script@v6
         with:
           script: |
             const axios = require('axios');
-            const res = await axios('https://icanhazdadjoke.com/', { headers: { Accept: 'text/plain' } })
+            const res = await axios('https://icanhazdadjoke.com', {headers: {Accept: 'text/plain'}})
             console.log(res.data)
